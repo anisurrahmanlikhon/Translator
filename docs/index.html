@@ -1,11 +1,22 @@
-
 <html lang="en">
 <head>
     
     <title>Translator</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <!-- Imports -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=PT+Sans" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet"> 
+    
     
     <style>
     
+    /* Global Styles */
 * {
     padding: 0;
     margin: 0;
@@ -13,8 +24,8 @@
 
 :root {
     --Nav: #1976D2;
-    --Nav-Top: white;
-    --Text: black;
+    --Nav-Top: #1565C0;
+    --Text: #FFFFFF;
 }
 
 body {
@@ -28,8 +39,8 @@ body {
     width: 100%;
     height: 5vh;
     border-top: 2vh solid var(--Nav-Top);
-    background-color: white;
-    color: black;
+    background-color: var(--Nav);
+    color: var(--Text);
     font-weight: bold;
     padding-top: 1vh;
     font-family: 'Lato';
@@ -127,19 +138,47 @@ body {
     top: 3px;
     box-shadow: none;
 }
-        
-</style>
     
     
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    
+    </style>
+    
+</head>
+<body>
+    <div class="container">
+        <div class="nav">
+            Translate App
+        </div>
+        <div class="info">
+            <h3 id="title">Simple Translating App</h3>
+            <p id="sub">Inspired From ␥Maximee</p>
+            <div id="info">
+                Translating from <span id="from">??</span> to <span id="to">??</span>.
+            </div>
+        </div>
+        <div class="language" align="center">
+            <div class="select">
+                <select id="lang1"></select>
+                <select id="lang2"></select>
+            </div>
+            <div class="textarea">
+                <textarea id="user"></textarea>
+                <textarea id="output" readonly></textarea>
+            </div>
+        </div>
+        <div class="main" align="center">
+            <button id="translate">Translate</button>
+            <button id="clear">Clear</button>
+        </div>
+        <div class="footer">
+            Created By 83338
+        </div>
+    </div>
+</body>
+</html>
 
-   
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
-    
-    $(function() {
+<script>
+$(function() {
     // Supported Languages
     var lang = [
         "auto",
@@ -234,48 +273,5 @@ body {
         );
     }, 10);
 });
-    
-    
-    
-    </script>
-    
-    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=PT+Sans" rel="stylesheet"> 
-    <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet"> 
-    
-</head>
-    
-    
-<body>
-    <div class="container">
-        <div class="nav">
-            Translator
-        </div>
-        <div class="info">
-            <h3 id="title"></h3>
-            <p id="sub"></p>
-            <div id="info">
-                Translating from <span id="from">??</span> to <span id="to">??</span>.
-            </div>
-        </div>
-        <div class="language" align="center">
-            <div class="select">
-                <select id="lang1"></select>
-                <select id="lang2"></select>
-            </div>
-            <div class="textarea">
-                <textarea id="user"></textarea>
-                <textarea id="output" readonly></textarea>
-            </div>
-        </div>
-        <div class="main" align="center">
-            <button id="translate">Translate</button>
-            <button id="clear">Clear</button>
-        </div>
-        <div class="footer">
-            Created By Anisur
-        </div>
-    </div>
-</body>
-</html>
 
+</script>
