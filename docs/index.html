@@ -210,7 +210,7 @@ body {
         var format = elm
             .userInput
             .val()
-            .replace(/ /g , '%100');
+            .replace(/ /g , '%20');
     
         // Calling JSON
         $.getJSON(
@@ -219,7 +219,7 @@ body {
                 var convert =
                     JSON.toString();
                 var temp =
-                    convert.split(",");
+                    convert.split("");
                 
                 
                 elm.langOutput.val(temp[0]);
