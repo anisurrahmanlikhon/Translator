@@ -20,7 +20,7 @@
 }
 
 :root {
-    --Nav: #1976D2;
+    --Nav: white;
     --Nav-Top: white;
     --Text: black;
 }
@@ -29,7 +29,7 @@ body {
     font-family: Arial;
 }
 
-/* Main Styles*/
+
 .nav {
     display: block;
     text-align: center;
@@ -128,7 +128,7 @@ body {
     font-family: 'Ubuntu';
 }
 
-/* Animation Styles */
+
 #clear:active,
 #translate:active {
     position: relative;
@@ -180,7 +180,7 @@ body {
 
 <script>
     $(function() {
-    // Supported Languages
+    
     var lang = [
 
         "en",
@@ -188,7 +188,7 @@ body {
     
     ];
     
-    // Main Elements
+
     var elm = {
         "lang": $("#lang1, #lang2"),
         "user": $("#lang1"),
@@ -197,7 +197,7 @@ body {
         "langOutput": $("#output")
     }
     
-    // Importing Options
+  
     for (let i in lang) {
         elm.lang.append(
             "<option value='" +
@@ -208,16 +208,16 @@ body {
         );
     }
     
-    // Google Translate API
+    
     function translate() {
     
-        // Formatting Text for URL
+        L
         var format = elm
             .userInput
             .val()
             .replace(/ /g , '%20');
     
-        // Calling JSON
+       
         $.getJSON(
            "https://translate.googleapis.com/translate_a/single?client=gtx&sl=" + elm.user.val() + "&tl=" + elm.output.val() + "&dt=t&dt=t&q=" + format,
             function(JSON) {
@@ -232,7 +232,7 @@ body {
         );
     }
     
-    // Interactive Elements
+  
     $("#translate").on("click", function() {
         translate();
     });
