@@ -1,249 +1,70 @@
-<html lang="en">
-<head>
-    <title> Translator</title>
+<html>
+  <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Translation</title>
 
-    <!-- Imports -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=PT+Sans" rel="stylesheet"> 
-    <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet"> 
-    
-    
-<style>
-   * {
-    padding: 0;
-    margin: 0;
-}
+    <script>
+      function requestTranslation() {
+        // Get the user's input from the UI
+        const text = document.getElementById('text').value;
+        const languageCode = document.getElementById('language').value;
 
-:root {
-    --Nav: #1976D2;
-    --Nav-Top: white;
-    --Text: black;
-}
+        // Show a placeholder while waiting for the response
+        const resultContainer = document.getElementById('result');
+        resultContainer.innerText = 'Loading...';
 
-body {
-    font-family: Arial;
-}
+        // Build the request params
+        const params = new URLSearchParams();
+        params.append('text', text);
+        params.append('languageCode', languageCode);
 
-/* Main Styles*/
-.nav {
-    display: block;
-    text-align: center;
-    width: 100%;
-    height: 5vh;
-    border-top: 2vh solid var(--Nav-Top);
-    background-color: white;
-    color: var(--Text);
-    font-weight: bold;
-    padding-top: 1vh;
-    font-family: 'Lato';
-    box-shadow: 0 1px 3px #222;
-    position: fixed;
-    top: 0;
-}
+        // Send a POST request to the server
+        fetch('/translate', {
+          method: 'POST',
+          body: params
+        })
+        // Convert the response to plain text
+        .then(response => response.text())
+        // Show the translated text in the page
+        .then((translatedMessage) => {
+          resultContainer.innerText = translatedMessage;
+        });
+      }
+    </script>
 
-#title,
-#sub {
-    display: block;
-    font-family: 'PT Sans';
-}
+    <style>
+      #text {
+        width: 500px;
+        height: 125px;
+      }
 
-#title {
-    display: block;
-    text-align: center;
-    font-size: 1.2em;
-    margin-top: 10vh;
-}
+      #language {
+        display: block;
+        margin-top: 25px;
+        margin-bottom: 25px;
+      }
+    </style>
 
-#sub {
-    display: block;
-    text-align: center;
-    font-size: 0.6em;
-    line-height: 3em;
-}
+  </head>
+  <body>
+    <h1>Translation</h1>
+    <p>Type a message and select a language, then click submit to translate it.</p>
 
-#info {
-    display: block;
-    text-align: center;
-    font-size: 0.8em;
-    margin-top: 3vh;
-}
+    <textarea id="text"></textarea>
 
-.select {
-    display: block;
-    margin-top: 3vh;
-}
+    <select id="language">
 
-.select * {
-    display: inline;
-    width: 20vw;
-    text-align: center;
-    text-transform: capitalize;
-    margin-bottom: 3vh;
-}
+      <option value="bn">Bangla</option>
+      <option value="en">English</option>
+      <option value="zh">Chinese</option>
+      <option value="es">Spanish</option>
+      <option value="hi">Hindi</option>
+      <option value="ar">Arabic</option>
+    </select>
 
-#user,
-#output {
-    width: 40vw;
-    height: 35vh;
-    padding: 5px;
-    font-family: 'Ubuntu';
-    overflow-y: scroll;
-}
+    <button onclick="requestTranslation();">Translate</button>
 
-#from,
-#to {
-    display: inline;
-    text-transform: capitalize;
-    font-weight: bold;
-}
-
-#translate,
-#clear {
-    display: inline;
-    background-color: inherit;
-    border: 2px solid #EEE;
-    padding: 3px;
-    font-size: 0.8em;
-    margin-top: 2vh !important;
-    width: 20vw;
-    height: 5vh;
-    box-shadow: 0 1px 0.1em;
-    outline: none;
-    margin: 0 20px;
-    overflow: hidden;
-}
-
-.footer {
-    display: block;
-    position: relative;
-    top: 20vh;
-    margin-bottom: 2vh;
-    font-size: 0.8em;
-    text-align: center;
-    font-family: 'Ubuntu';
-}
-
-/* Animation Styles */
-#clear:active,
-#translate:active {
-    position: relative;
-    top: 3px;
-    box-shadow: none;
-} 
-    
-</style>    
-    
-    
-</head>
-<body>
-    <div class="container">
-        <div class="nav">
-            Translator
-        </div>
-        <div class="info">
-            <h3 id="title"></h3>
-            <p id="sub"></p>
-          <div id="info">
-                Translating from <span id="from">??</span> to <span id="to">??</span>.
-            </div>
-        </div>
-        <div class="language" align="center">
-            <div class="select">
-                <select id="lang1"></select>
-                <select id="lang2"></select>
-            </div>
-            <div class="textarea">
-                <textarea id="user"></textarea>
-                <textarea id="output" readonly></textarea>
-            </div>
-        </div>
-        <div class="main" align="center">
-            <button id="translate">Translate</button>
-            <button id="clear">Clear</button>
-        </div>
-        <div class="footer">
-            Created By Anisur
-        </div>
-    </div>
-</body>
+    <hr/>
+    <div id="result"></div>
+  </body>
 </html>
-
-<script>
-    $(function() {
-    // Supported Languages
-    var lang = [
-        "bn",
-        "en",
-        ];
-     
-    
-    // Main Elements
-    var elm = {
-        "lang": $("#lang1, #lang2"),
-        "user": $("#lang1"),
-        "output": $("#lang2"),
-        "userInput": $("#user"),
-        "langOutput": $("#output")
-    }
-    
-    // Importing Options
-    for (let i in lang) {
-        elm.lang.append(
-            "<option value='" +
-            lang[i] +
-            "'>" +
-            lang[i] +
-            "</option>"
-        );
-    }
-    
-    // Google Translate API
-    function translate() {
-    
-        // Formatting Text for URL
-        var format = elm
-            .userInput
-            .val()
-            .replace(/ /g , '%20');
-    
-        // Calling JSON
-        $.getJSON(
-           "https://translate.googleapis.com/translate_a/single?client=gtx&sl=" + elm.user.val() + "&tl=" + elm.output.val() + "&dt=t&dt=t&q=" + format,
-            function(JSON) {
-                var convert =
-                    JSON.toString();
-                var temp =
-                    convert.split(",");
-                
-                
-                elm.langOutput.val(temp[0]);
-            }
-        );
-    }
-    
-    // Interactive Elements
-    $("#translate").on("click", function() {
-        translate();
-    });
-    
-    $("#clear").on("click", function() {
-        elm.userInput.val(null);
-        elm.langOutput.val(null);
-    });
-    
-    setInterval(function() {
-        $("#from").text(
-            $("#lang1").val()
-        );
-        
-        $("#to").text(
-            $("#lang2").val()
-        );
-    }, 10);
-});
-</script>
