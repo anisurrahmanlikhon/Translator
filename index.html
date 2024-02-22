@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Translator</title>
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=PT+Sans" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet"> 
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="nav">
+            <span class="title">Translator</span>
+        </div>
+        <div class="info">
+            <h3 id="title"></h3>
+            <p id="sub"></p>
+            <div id="info"></div>
+        </div>
+        <div class="language">
+            <select id="lang1" class="lang-selector"></select>
+            <select id="lang2" class="lang-selector"></select>
+        </div>
+        <div class="text-area">
+            <textarea id="user" class="text-input" placeholder="Enter text..."></textarea>
+<button id="speakUser" class="speaker-btn">&#128266;</button> <!-- Speaker button for user input -->
+<textarea id="output" class="text-output" readonly placeholder="Translation here..."></textarea>
+<button id="speakOutput" class="speaker-btn">&#128266;</button> <!-- Speaker button for translation output -->
+
+        </div>
+        <div class="actions">
+            <button id="translate" class="btn">Translate</button>
+            <button id="clear" class="btn">Clear</button>
+        </div>
+        <br>
+        <br>
+        <div class="footer">
+            <span class="created-by"><b>Created By Md. Anisur Rahman</b></span><br><br>
+            <span class="created-by"><b>Supervised By Prof. Dr. Mohammad Nurul Huda, Head of CSE Department, UIU.</b></span><br>
+           <br>
+            <img style="width:300px;" src="UIU Logo.png" >
+            
+            
+        </div>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
